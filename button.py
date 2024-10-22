@@ -18,10 +18,10 @@ class FloatingRoundWindowApp:
     def __init__(self, root):
         self.root = root
         self.root.overrideredirect(True)  # Remove window borders
-        self.root.geometry("50x50")  # Set the window size smaller for a smaller button
+        self.root.geometry("50x50")  
         self.root.attributes("-topmost", True)  # Keep window always on top
 
-        # Make the window background transparent (Windows specific)
+        # Make the window background transparent 
         self.root.wm_attributes("-transparentcolor", "black")
 
         # Create a canvas with a black background to match the transparent color
@@ -31,8 +31,8 @@ class FloatingRoundWindowApp:
         # Draw the gradient button
         self.draw_gradient_circle()
 
-        # Bind the floating button click to take a screenshot
-        self.canvas.tag_bind("circle", "<Button-1>", self.take_screenshot)
+        # Bind the floating button double-click to take a screenshot
+        self.canvas.tag_bind("circle", "<Double-Button-1>", self.take_screenshot)
 
         # Bind the canvas for dragging
         self.canvas.bind("<Button-1>", self.start_move)
@@ -42,7 +42,7 @@ class FloatingRoundWindowApp:
         self.is_dragging = False  # Flag to check if the button is being dragged
 
     def draw_gradient_circle(self):
-        """Draw a gradient circle transitioning from blue to white."""
+        """Gradient circle transitioning from blue to white."""        
         for i in range(20):
             color = self.get_gradient_color(i / 20)
             # Create a slightly smaller oval for each step in the gradient
